@@ -1,0 +1,41 @@
+{
+  "name": "garage-door-visualizer",
+  "productName": "Garage Door Visualizer",
+  "version": "2.1.0",
+  "description": "Music-reactive light shows for projection-mapped garage doors. Drop in a song, place effects on a timeline, render a video per door.",
+  "main": "main.js",
+  "author": "Levi Black",
+  "homepage": "https://github.com/Leviblack12/garage-door-visualizer",
+  "scripts": {
+    "start": "electron .",
+    "build:web": "python3 source/build.py",
+    "dist": "bash scripts/make-dmg.sh"
+  },
+  "build": {
+    "appId": "com.leviblack.garagedoorvisualizer",
+    "productName": "Garage Door Visualizer",
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "mac": {
+      "category": "public.app-category.video",
+      "icon": "build/icon.png",
+      "identity": null,
+      "target": [
+        "dir"
+      ],
+      "darkModeSupport": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^45.3.2",
+    "electron-builder": "^26.18.0"
+  }
+}

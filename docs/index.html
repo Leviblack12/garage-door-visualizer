@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garage Door Visualizer</title>
+<meta name="description" content="Music-reactive light shows for projection-mapped garage doors. Drop in a song, place effects on a timeline, render a video for each door.">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root { --bg: #0b0f18; --panel: #121a2a; --line: #222c42; --text: #e8eaf1; --muted: #9aa3b8; --gold: #f4c76e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 Inter, system-ui, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 48px 20px 64px; }
+  header { display: flex; align-items: center; gap: 18px; }
+  header img { width: 72px; height: 72px; }
+  h1 { font-family: Cinzel, serif; font-weight: 600; letter-spacing: .04em; font-size: clamp(26px, 5vw, 40px); margin: 0; color: var(--gold); }
+  .tag { color: var(--muted); margin: 4px 0 0; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 10px; }
+  a.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; border: 1px solid var(--line); color: var(--text); background: var(--panel); }
+  a.btn.primary { background: var(--gold); color: #1a1205; border-color: var(--gold); }
+  a.btn:hover { filter: brightness(1.08); }
+  .small { color: var(--muted); font-size: 13px; }
+  figure { margin: 28px 0; } figure img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; margin: 18px 0; }
+  h2 { font-size: 18px; margin: 0 0 10px; }
+  ul, ol { margin: 0; padding-left: 20px; } li { margin: 4px 0; }
+  code { background: #0b1220; border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; font-size: 13px; word-break: break-all; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .grid section { margin: 0; }
+  footer { color: var(--muted); font-size: 13px; margin-top: 30px; }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="icon.png" alt=""><div><h1>Garage Door Visualizer</h1><p class="tag">Music-reactive light shows for projection-mapped garage doors.</p></div></header>
+  <div class="btns">
+    <a class="btn primary" href="https://github.com/Leviblack12/garage-door-visualizer/releases/latest/download/Garage-Door-Visualizer-mac-apple-silicon.dmg">Download for Mac (Apple Silicon)</a>
+    <a class="btn" href="https://github.com/Leviblack12/garage-door-visualizer/releases/latest/download/Garage-Door-Visualizer-mac-intel.dmg">Mac (Intel)</a>
+    <a class="btn" href="app.html">Open in your browser</a>
+  </div>
+  <p class="small">The browser version works in Chrome or Edge on any computer. Nothing you load is uploaded anywhere.</p>
+  <figure><img src="screenshot.jpg" alt="The app: two garage doors with sparkle angels, an effects library and a song timeline"></figure>
+  <div class="grid">
+    <section><h2>How it works</h2><ol>
+      <li>Drop in a song. It finds the beats, bars, drums, bass, melody, vocals and song parts in a few seconds.</li>
+      <li>The timeline fills itself: verses, choruses and drops get their own looks.</li>
+      <li>Drag effects onto the timeline and pick what each one reacts to: downbeats only, the kick, the melody, the vocals and more.</li>
+      <li>Render a video for each door, or both doors in one mapped video.</li>
+    </ol></section>
+    <section><h2>66 effects</h2><ul>
+      <li>DJ lights: lasers, moving heads, strobes, mirror ball</li>
+      <li>Christmas lights: C9 swags, light-string frames, spiral trees, bokeh</li>
+      <li>Candy: peppermints, candy stripes, lollipops, candy rain</li>
+      <li>Stars, sparkle angels, nativity, snowflakes, piano keys, kaleidoscopes</li>
+    </ul></section>
+  </div>
+  <section><h2>First time opening the Mac app</h2>
+    <p class="small" style="margin-top:0">The app isn't signed with a paid Apple developer certificate, so macOS asks once.</p>
+    <ol>
+      <li>Open the .dmg and drag Garage Door Visualizer into Applications.</li>
+      <li>Open it. When macOS says it can't verify the app, click Done.</li>
+      <li>Go to System Settings, Privacy &amp; Security, scroll down and click <b>Open Anyway</b>.</li>
+    </ol>
+    <p class="small">If macOS says the app is damaged, run this once in Terminal: <code>xattr -dr com.apple.quarantine "/Applications/Garage Door Visualizer.app"</code></p>
+  </section>
+  <footer>Made by Levi Black for the Black Family Christmas Lights show. Video export uses mp4-muxer (MIT).</footer>
+</main>
+</body>
+</html>
