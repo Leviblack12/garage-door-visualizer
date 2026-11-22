@@ -2,6 +2,8 @@
 const { app, BrowserWindow, Menu, ipcMain, dialog, shell } = require('electron');
 const path = require('path'); const fs = require('fs');
 let win = null; let lastDir = null;
+// The Movies folder lookup fails on some macOS versions, so fall back through other folders.
+function defaultDir() { for (const k of ['movies', 'downloads', 'desktop', 'home']) { try { const p = app.getPath(k); if (p && fs.existsSync(p)) return p; } catch (e) { /* try the next one */ } } return require('os').homedir(); }
 
 function createWindow() {
   win = new BrowserWindow({
@@ -23,12 +25,12 @@ function uniquePath(dir, name) {
   while (fs.existsSync(p)) p = path.join(dir, `${base} (${i++})${ext}`); return p;
 }
 ipcMain.handle('save-file', async (e, name, data) => {
-  const r = await dialog.showSaveDialog(win, { defaultPath: path.join(lastDir || app.getPath('movies'), name) });
+  const r = await dialog.showSaveDialog(win, { defaultPath: path.join(lastDir || defaultDir(), name) });
   if (r.canceled || !r.filePath) return null;
   fs.writeFileSync(r.filePath, Buffer.from(data)); lastDir = path.dirname(r.filePath); return r.filePath;
 });
 ipcMain.handle('save-files', async (e, files) => {
-  const r = await dialog.showOpenDialog(win, { title: 'Choose a folder for the videos', buttonLabel: 'Save here', defaultPath: lastDir || app.getPath('movies'), properties: ['openDirectory', 'createDirectory'] });
+  const r = await dialog.showOpenDialog(win, { title: 'Choose a folder for the videos', buttonLabel: 'Save here', defaultPath: lastDir || defaultDir(), properties: ['openDirectory', 'createDirectory'] });
   if (r.canceled || !r.filePaths[0]) return null;
   const dir = r.filePaths[0]; let first = null;
   for (const f of files) { const p = uniquePath(dir, f.name); fs.writeFileSync(p, Buffer.from(f.data)); first = first || p; }

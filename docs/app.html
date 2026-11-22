@@ -5078,7 +5078,7 @@ function wire() {
       }
       $('progress').firstElementChild.style.width = '100%';
       const r0 = renders[0];
-      $('renderNote').textContent = 'Done: ' + renders.map(r => r.label + ' ' + r.size[0] + '\u00d7' + r.size[1]).join(', ') + ' \u00b7 ' + r0.frames + ' frames each' + (r0.audio ? ', with the song audio.' : '. Video only: this browser could not encode the audio.');
+      $('renderNote').textContent = 'Done: ' + renders.map(r => r.label + ' ' + r.size[0] + '\u00d7' + r.size[1]).join(', ') + ' \u00b7 ' + r0.frames + ' frames each' + (r0.audio ? ', with the song audio.' : ($('rAudio').value === '1' ? '. Video only: this browser could not encode the audio.' : ', video only.'));
       $('resList').innerHTML = renders.map((r, i) => '<div class="resrow"><span><b>' + esc(r.name) + '</b> \u00b7 ' + (r.blob.size / 1048576).toFixed(0) + ' MB</span><button data-i="' + i + '">Preview</button><button data-s="' + i + '">Save</button></div>').join('');
       $('resList').querySelectorAll('[data-s]').forEach(b => b.onclick = () => saveFile(renders[+b.dataset.s].name, renders[+b.dataset.s].blob));
       const v = $('resVideo'); const show = (i) => { try { v.hidden = false; v.src = URL.createObjectURL(renders[i].blob); } catch (e) { v.hidden = true; } };

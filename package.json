@@ -1,7 +1,7 @@
 {
   "name": "garage-door-visualizer",
   "productName": "Garage Door Visualizer",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Music-reactive light shows for projection-mapped garage doors. Drop in a song, place effects on a timeline, render a video per door.",
   "main": "main.js",
   "author": "Levi Black",
